@@ -59,3 +59,34 @@ void list_append(list_t* list, list_node_t* node)
 
         list->length++;
 }
+
+void list_delete(list_t* list, list_node_t* node)
+{
+        if (list->length == 1) {
+                free(node);
+
+                list->head = NULL;
+                list->tail = NULL;
+        } else if (node == list->tail) {
+                list->tail = list->tail->previous;
+
+                free(node);
+
+                list->tail->next = list->head;
+                list->head->previous = list->tail;
+        } else if (node == list->head) {
+                list->head = list->head->next;
+
+                free(node);
+
+                list->tail->next = list->head;
+                list->head->previous = list->tail;
+        } else {
+                node->next->previous = node->previous;
+                node->previous->next = node->next;
+
+                free(node);
+        }
+
+        list->length--;
+}

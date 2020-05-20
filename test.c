@@ -18,12 +18,17 @@ int main(void)
         int a = 2;
         int b = 6;
         int c = 8;
-                        
+                       
         list_append(new_list, list_node_new(&a));
         list_append(new_list, list_node_new(&b));
         list_append(new_list, list_node_new(&c));
         list_append(new_list, list_node_new(&b));
+        list_append(new_list, list_node_new(&b));
 
+        list_delete(new_list, new_list->tail);
+        list_delete(new_list, new_list->head->next);
+        list_delete(new_list, new_list->head);
+        
         list_print(new_list);
         
         list_destroy(new_list);
