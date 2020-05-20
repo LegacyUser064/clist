@@ -9,6 +9,7 @@ list_node_t* list_node_new(void* data)
         
         new_node->data = data;
         new_node->next = NULL;
+        new_node->previous =  NULL;
 
         return new_node;
 }
@@ -19,7 +20,7 @@ list_t* list_new(void)
         if (new_list == NULL) return NULL;
 
         new_list->head = NULL;
-        new_list->tail = new_list->head;
+        new_list->tail = NULL;
         new_list->length = 0;
 
         return new_list;
@@ -43,12 +44,15 @@ void list_append(list_t* list, list_node_t* node)
 {
         if (list->length == 0) {
                 list->head = node;
-                list->tail = node;
-                node->next = list->head;
+                list->tail = list->head;
+
+                node->previous = list->tail;
+                node->next = list->tail;
         } else {
                 list->tail->next = node;
+                node->previous = list->tail;
+                
                 list->tail = node;
-                node->next = list->head;
         }
 
         list->length++;

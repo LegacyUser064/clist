@@ -2,8 +2,9 @@
 #define LIST_H
 
 typedef struct list_node {
-      struct list_node* next;
-      void* data;
+        struct list_node* next;
+        struct list_node* previous; 
+        void* data;
 } list_node_t;
 
 /* struct list
