@@ -44,14 +44,16 @@ void list_append(list_t* list, list_node_t* node)
 {
         if (list->length == 0) {
                 list->head = node;
-                list->tail = list->head;
+                list->tail = node;
 
                 node->previous = list->tail;
                 node->next = list->tail;
         } else {
                 list->tail->next = node;
+
                 node->previous = list->tail;
-                
+                node->next = list->head;
+                                
                 list->tail = node;
         }
 
