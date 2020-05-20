@@ -49,6 +49,10 @@ void list_destroy(list_t* list);
  */
 void list_append(list_t* list, list_node_t* node);
 
+/*  */
 void list_delete(list_t* list, list_node_t* node);
+
+/*  */
+void list_insert_after(list_t* list, list_node_t* node, list_node_t* new_node);
 
 #endif // LIST_H

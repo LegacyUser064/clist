@@ -30,6 +30,11 @@ int main(void)
         list_delete(new_list, new_list->head);
         
         list_print(new_list);
+
+        list_insert_after(new_list, new_list->head, list_node_new(&b));
+        list_append(new_list, list_node_new(&a));
+
+        list_print(new_list);
         
         list_destroy(new_list);
         

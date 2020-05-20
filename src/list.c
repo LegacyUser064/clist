@@ -90,3 +90,14 @@ void list_delete(list_t* list, list_node_t* node)
 
         list->length--;
 }
+
+void list_insert_after(list_t* list, list_node_t* node, list_node_t* new_node)
+{
+        new_node->next = node->next;
+        new_node->previous = node;
+
+        node->next->previous = new_node;
+        node->next = new_node;
+
+        list->length++;
+}
