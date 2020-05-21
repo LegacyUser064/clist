@@ -29,19 +29,15 @@ int main(void)
         list_append(list, list_node_new(&b));
         list_append(list, list_node_new(&b));
 
-        //list_print(list);
-
-        list_insert_after(list, list->head, list_node_new(&b));
-        list_append(list, list_node_new(&a));
-
-        //list_print(list);
-
-        list_t* new_list = list_split_after(list, list->head->next->next);
-
         list_print(list);
 
+        list_t* new_list = list_split_after(list, list_find_index(list, 2));
+
+        list_delete(list, list->tail);
+
+        list_print(list);
         list_print(new_list);
-        
+
         list_destroy(list);
         list_destroy(new_list);
         

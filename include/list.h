@@ -11,7 +11,7 @@ typedef struct list_node {
  * - head: always points to first node in the list
  * - tail: always points to last node  in the list, and the
  *         list node pointed to points to the head node
- * - length: how many members are within the list
+ * - length: how many nodes are within the list
  */
 typedef struct list {
         list_node_t* head;
@@ -57,5 +57,8 @@ void list_insert_after(list_t* list, list_node_t* node, list_node_t* new_node);
 
 /*  */
 list_t* list_split_after(list_t* list, list_node_t* node);
+
+/*  */
+list_node_t* list_find_index(list_t* list, int index);
 
 #endif // LIST_H

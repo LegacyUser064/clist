@@ -40,6 +40,21 @@ void list_destroy(list_t* list)
         free(list);
 }
 
+static int list_length(list_t* list)
+{
+        list_node_t* current_node = list->head;
+        int length = 1;
+
+        if (list->head == NULL) return 0;
+
+        while (current_node != list->tail) {
+                current_node = current_node->next;
+                length++;
+        }
+
+        return length;
+}
+
 void list_append(list_t* list, list_node_t* node)
 {
         if (list->length == 0) {
@@ -102,21 +117,6 @@ void list_insert_after(list_t* list, list_node_t* node, list_node_t* new_node)
         list->length++;
 }
 
-static int list_length(list_t* list)
-{
-        list_node_t* current_node = list->head;
-        int length = 1;
-
-        if (list->head == NULL) return 0;
-
-        while (current_node != list->tail) {
-                current_node = current_node->next;
-                length++;
-        }
-
-        return length;
-}
-
 list_t* list_split_after(list_t* list, list_node_t* node)
 {
         list_t* new_list;
@@ -140,3 +140,17 @@ list_t* list_split_after(list_t* list, list_node_t* node)
 
         return new_list;
 }
+
+list_node_t* list_find_index(list_t* list, int index)
+{
+        list_node_t* current_node;
+
+        current_node = list->head;
+
+        for (int i = 0; i != index && i < list->length; i++) {
+                current_node = current_node->next;
+        }
+
+        return current_node;
+}
+
