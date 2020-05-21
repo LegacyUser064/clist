@@ -43,6 +43,7 @@ int main(void)
         list_print(new_list);
         
         list_destroy(list);
+        list_destroy(new_list);
         
         return 0;
 }
