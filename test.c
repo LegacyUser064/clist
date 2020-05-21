@@ -22,7 +22,7 @@ int main(void)
         int a = 2;
         int b = 6;
         int c = 8;
-                       
+
         list_append(list, list_node_new(&a));
         list_append(list, list_node_new(&b));
         list_append(list, list_node_new(&c));

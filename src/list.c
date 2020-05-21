@@ -1,25 +1,13 @@
 #include <stdlib.h> //brad
 #include <stddef.h> // <-- good! always list "standard" headers before project headers
-#include "list.h" // <-- but why "" around list.h? If your makefile is good, you should be able to put it in <>
+#include <list.h> // <-- but why "" around list.h? If your makefile is good, you should be able to put it in <>
 
 list_node_t* list_node_new(void* data)
 {
-//brad always indent by 4 spaces. it's the right tradeoff between readability and line length
-        list_node_t* new_node = malloc(sizeof(list_node_t));
-//brad it hurts readability to have more than one statement per line.
-// I suggest the following:
-    /*
-    //brad if you get into the habit of putting the constant first in an "==" expression,
-    // you'll never mistakenly compile "if (new_node = NULL)". It's not an easy thing to debug,
-    // because your mind wants to see "==" really badly resulting in reading the statement
-    // incorrectly about 50,000 times before finally figuring it out.
-    if (NULL == new_node) {
-        return NULL;
-    }
-    */
-        if (new_node == NULL) return NULL;
-        //brad best practice is, if possible, only 1 return statement per function.
-        // I'd suggest:
+        list_node_t* new_node;
+        
+        new_node = malloc(sizeof(list_node_t));
+
         if (NULL != new_node)
         {
             new_node->data = data;
@@ -32,55 +20,58 @@ list_node_t* list_node_new(void* data)
 
 list_t* list_new(void)
 {
-        list_t* new_list = malloc(sizeof(list_t));
-        if (new_list == NULL) return NULL;
+        list_t* new_list;
 
-        new_list->head = NULL;
-        new_list->tail = NULL;
-        new_list->length = 0;
+        new_list = malloc(sizeof(list_t));
+
+        if (NULL != new_list) {
+                new_list->head = NULL;
+                new_list->tail = NULL;
+                new_list->length = 0;
+        }
 
         return new_list;
 }
 
 void list_destroy(list_t* list)
 {
-        list_node_t* current_node = list->head;
-        list_node_t* temp_node = NULL;
+        list_node_t* current_node;
+        list_node_t* temp_node;
+
+        current_node = list->head;
+        temp_node = current_node;
                 
         for (int i = 0; i < list->length; i++) {
                 temp_node = current_node;
                 current_node = current_node->next;
-                //brad it's good practice to set something to NULL or 0 after you free it.
-                // One of the hardest things to debug is a memory overwrite, and it's enormously
-                // helpful if you know you set pointers to NULL when you freed them.
+
                 free(temp_node);
-                //brad
-                // temp_node = NULL;
+
+                temp_node = NULL;
         }
 
         free(list);
-        //brad
-        // list = NULL;
+
+        list = NULL;
 }
 
-//brad why do you walk the list when you have a length field?
 static int list_length(list_t* list)
 {
-        list_node_t* current_node = list->head;
-        //brad it'd be better to init length to 0. Then you can write:
-        // if (NULL != list->head) {
-        //     while (current_node != list->tail)
-        //        etc. etc.
-        // }
-        int length = 1;
+        list_node_t* current_node;
+        int length;
 
-        if (list->head == NULL) return 0;
+        current_node = list->head;
+        length = 0;
 
-        while (current_node != list->tail) {
-                current_node = current_node->next;
-                length++;
+        if (NULL != list->head) {
+                length = 1;
+                
+                while (current_node != list->tail) {
+                        current_node = current_node->next;
+                        length++;
+                }
         }
-
+        
         return length;
 }
 
