@@ -10,9 +10,9 @@ list_node_t* list_node_new(void* data)
 
         if (NULL != new_node)
         {
-            new_node->data = data;
-            new_node->next = NULL;
-            new_node->previous =  NULL;
+                new_node->data = data;
+                new_node->next = NULL;
+                new_node->previous =  NULL;
         }
 
         return new_node;
@@ -55,7 +55,7 @@ void list_destroy(list_t* list)
         list = NULL;
 }
 
-static int list_length(list_t* list)
+static int list_find_length(list_t* list)
 {
         list_node_t* current_node;
         int length;
@@ -123,6 +123,8 @@ void list_delete(list_t* list, list_node_t* node)
                 free(node);
         }
 
+        node = NULL;
+        
         list->length--;
 }
 
@@ -155,8 +157,8 @@ list_t* list_split_after(list_t* list, list_node_t* node)
         list->head->previous = node;
         node->next = list->head;
 
-        list->length = list_length(list);
-        new_list->length = list_length(new_list);
+        list->length = list_find_length(list);
+        new_list->length = list_find_length(new_list);
 
         return new_list;
 }
