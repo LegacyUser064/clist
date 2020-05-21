@@ -5,10 +5,14 @@ void list_print(list_t* list)
 {
         list_node_t* current_node = list->head;
 
+        printf("%s\n\n", "List Dump");
+
         for (int i = 0; i < list->length; i++) {
                 printf("%d\n", *(int*) current_node->data);
                 current_node = current_node->next;
         }
+
+        printf("%c", '\n');
 }
 
 int main(void) 
@@ -36,8 +40,6 @@ int main(void)
 
         list_print(list);
 
-        printf("%c", '\n');
-        
         list_print(new_list);
         
         list_destroy(list);
