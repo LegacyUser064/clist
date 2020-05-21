@@ -13,6 +13,9 @@ typedef struct list_node {
  *         list node pointed to points to the head node
  * - length: how many nodes are within the list
  */
+
+//brad why do you have a separate tail? In a doubly linked list, tail
+// is just head->previous.
 typedef struct list {
         list_node_t* head;
         list_node_t* tail;
@@ -22,7 +25,7 @@ typedef struct list {
 /* list_node_new(void* data)
  * - data: data member of new list node
  *
- * Creates and initializes a new list node then returs it
+ * Creates and initializes a new list node then returns it
  */
 list_node_t* list_node_new(void* data);
 
