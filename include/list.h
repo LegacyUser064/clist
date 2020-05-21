@@ -2,9 +2,9 @@
 #define LIST_H
 
 typedef struct list_node {
-        struct list_node* next;
-        struct list_node* previous; 
-        void* data;
+    struct list_node* next;
+    struct list_node* previous; 
+    void* data;
 } list_node_t;
 
 /* struct list
@@ -17,9 +17,9 @@ typedef struct list_node {
 //brad why do you have a separate tail? In a doubly linked list, tail
 // is just head->previous.
 typedef struct list {
-        list_node_t* head;
-        list_node_t* tail;
-        int length;
+    list_node_t* head;
+    list_node_t* tail;
+    int length;
 } list_t;
 
 /* list_node_new(void* data)
