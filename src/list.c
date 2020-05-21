@@ -101,3 +101,42 @@ void list_insert_after(list_t* list, list_node_t* node, list_node_t* new_node)
 
         list->length++;
 }
+
+static int list_length(list_t* list)
+{
+        list_node_t* current_node = list->head;
+        int length = 1;
+
+        if (list->head == NULL) return 0;
+
+        while (current_node != list->tail) {
+                current_node = current_node->next;
+                length++;
+        }
+
+        return length;
+}
+
+list_t* list_split_after(list_t* list, list_node_t* node)
+{
+        list_t* new_list;
+
+        if (node == list->tail || list->length == 1) return NULL;
+
+        new_list = malloc(sizeof(list_t));
+
+        new_list->head = node->next;
+        new_list->tail = list->tail;
+        
+        new_list->head->previous = new_list->tail;
+        new_list->tail->next = new_list->head;
+
+        list->tail = node;
+        list->head->previous = node;
+        node->next = list->head;
+
+        list->length = list_length(list);
+        new_list->length = list_length(new_list);
+
+        return new_list;
+}

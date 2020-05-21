@@ -55,4 +55,7 @@ void list_delete(list_t* list, list_node_t* node);
 /*  */
 void list_insert_after(list_t* list, list_node_t* node, list_node_t* new_node);
 
+/*  */
+list_t* list_split_after(list_t* list, list_node_t* node);
+
 #endif // LIST_H
