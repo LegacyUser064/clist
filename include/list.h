@@ -20,7 +20,6 @@ typedef struct list {
 } list_t;
 
 /* list_node_new(void* data)
- * - data: data member of new list node
  *
  * Creates and initializes a new list node then returs it
  */
@@ -33,15 +32,12 @@ list_node_t* list_node_new(void* data);
 list_t* list_new(void);
 
 /* void list_destroy(list_t* list)
- * - list: list that is to be freed
  *
  * Frees the given list and its members
  */
 void list_destroy(list_t* list);
 
 /* void list_append(list_t* list, list_node_t* node)
- * - list: list to append to
- * - node: new node to append
  *
  * Places given node at the end of the supplied list
  *
@@ -58,7 +54,10 @@ void list_insert_after(list_t* list, list_node_t* node, list_node_t* new_node);
 /*  */
 list_t* list_split_after(list_t* list, list_node_t* node);
 
-/*  */
+/* list_node_t* list_find_index(list_t* list, int index)
+ *
+ * NOTE: If index is greater than (list.length - 1), then this function
+ *       will return */
 list_node_t* list_find_index(list_t* list, int index);
 
 #endif // LIST_H
