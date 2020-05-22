@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "list.h"
 
+//brad Can this be declared static?
 void list_print(list_t* list)
 {
     list_node_t* current_node = list->head;
