@@ -46,12 +46,15 @@ void list_destroy(list_t* list);
  *
  * NOTE: List can be empty
  */
+//brad suggest renaming to list_append_node()
 void list_append(list_t* list, list_node_t* node);
 
 /*  */
+//brad suggest renaming to list_delete_node()
 void list_delete(list_t* list, list_node_t* node);
 
 /*  */
+//brad suggest renaming to list_insert_node_after()
 void list_insert_after(list_t* list, list_node_t* node, list_node_t* new_node);
 
 /*  */
@@ -61,6 +64,7 @@ list_t* list_split_after(list_t* list, list_node_t* node);
  *
  * NOTE: If index is greater than (list.length - 1), then this function
  *       will return */
+//brad What do you mean by "...then this function will return"?
 list_node_t* list_find_index(list_t* list, int index);
 
 #endif // LIST_H
