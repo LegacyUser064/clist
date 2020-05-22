@@ -77,6 +77,7 @@ static int list_find_length(list_t* list)
 
 void list_append(list_t* list, list_node_t* node)
 {
+    //brad if (0 == list->length)
     if (list->length == 0) {
         list->head = node;
         list->tail = node;
@@ -97,6 +98,7 @@ void list_append(list_t* list, list_node_t* node)
 
 void list_delete(list_t* list, list_node_t* node)
 {
+    //brad if (1 == list->length)
     if (list->length == 1) {
         free(node);
 
@@ -143,9 +145,14 @@ list_t* list_split_after(list_t* list, list_node_t* node)
 {
     list_t* new_list;
 
+    //brad Put on separate lines:
+    // if (blahblah) {
+    //     return NULL;
+    // }
     if (node == list->tail || list->length == 1) return NULL;
 
     new_list = malloc(sizeof(list_t));
+    //brad What if new_list is NULL?
 
     new_list->head = node->next;
     new_list->tail = list->tail;
