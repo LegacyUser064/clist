@@ -12,17 +12,20 @@ void list_print(list_t* list)
         current_node = current_node->next;
     }
 
+    //brad You can just do printf("\n");
     printf("%c", '\n');
 }
 
 int main(void) 
 {
     list_t* list = list_new();
+    //brad What if list is NULL?
 
     int a = 2;
     int b = 6;
     int c = 8;
 
+    //brad What if list_node_new() returns NULL?
     list_append(list, list_node_new(&a));
     list_append(list, list_node_new(&b));
     list_append(list, list_node_new(&c));
